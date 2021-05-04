@@ -49,6 +49,7 @@ void draw() {
     if (dist(mouseX, mouseY, buttonhozpos, buttonvertpos)<buttonradius) {
       float halfH = height / 2;
       float total = 0;
+      float x = 200;
       for (int i = 0; i < buffer.size(); i ++) {
         strokeWeight(2);
         total += abs(buffer.get(i));
@@ -59,10 +60,10 @@ void draw() {
       rectMode(CENTER);
       noFill();
       ellipse(width/2, halfH, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
-      ellipse(200, halfH - 250, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
-      ellipse(200, halfH + 250, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
-      ellipse(800, halfH - 250, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
-      ellipse(800, halfH + 250, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
+      ellipse(x, halfH - 250, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
+      ellipse(x, halfH + 250, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
+      ellipse(x + 600, halfH - 250, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
+      ellipse(x + 600, halfH + 250, lerpedAverage * halfH *3, lerpedAverage * halfH *3);
     }
   }
   //--------------------------------------------------------------------------------------
@@ -113,7 +114,7 @@ void draw() {
   rotateZ(T);
   sphere(100+(LA *2500));
   popMatrix();
-  z += s;
+ 
     }
   }
   //---------------------------------------------------------------------------------------
