@@ -73,33 +73,52 @@ void draw() {
         lerpedBuffer[i] = lerp(lerpedBuffer[i], buffer.get(i), 0.1f);
         float sample = lerpedBuffer[i] * width * 2;    
         stroke(map(i, 0, buffer.size(), 0, 255), 255, 255);
-        line(i, height / 2 - sample, i, height/2 + sample);
+        line(height / 2 - sample,-i,height/2 + sample, i);
       }
     }
   }
   //---------------------------------------------------------------------------------------
   if (mousePressed) {
     if (dist(mouseX, mouseY, buttonhozpos, buttonvertpos+100)<buttonradius) {
-      float z =0;
       float s = 1;
-      
-  
-   pushMatrix();
-  translate(332,100,z);
-  sphere(100);
-  popMatrix();
-  
-  z += s;
-  
-  if(z>100){
-   z = -200; 
+      float T=0;
+      float S=0.01f;
+      float LA=0;
+    
+  float sum=0;
+  for(int i =0;i<buffer.size();i++){
+   sum += abs(buffer.get(i)); 
   }
+  float average = sum/(float)buffer.size();
+  LA = lerp(LA, average,0.1f);
+  background(0);
+  strokeWeight(5);
+  stroke(random(0,255),random(0,255),random(0,255));
+  lights();
+  noFill();
+   T +=S;
+   
+  pushMatrix();
+  translate(width/4,height/2,0);
+  rotateY(T);
+  rotateX(T);
+  rotateZ(T);
+  sphere(100 +(LA *2500));
+    popMatrix();
+  
+  pushMatrix();
+  translate(width*0.75,height/2,0);
+  rotateY(T);
+  rotateX(T);
+  rotateZ(T);
+  sphere(100+(LA *2500));
+  popMatrix();
+  z += s;
     }
   }
   //---------------------------------------------------------------------------------------
   if (mousePressed) {
     if (dist(mouseX, mouseY, buttonhozpos, buttonvertpos+150)<buttonradius) {
-    }
     float halfH = height / 2;
     float total = 0;
     for (int i = 0; i < buffer.size(); i ++) {
@@ -112,6 +131,7 @@ void draw() {
     rectMode(CENTER);
     noFill();
     triangle(halfH, lerpedAverage * halfH *3, halfH, lerpedAverage * halfH *3, halfH, lerpedAverage * halfH *3);
+  }
   }
   //---------------------------------------------------------------------------------------
 }
